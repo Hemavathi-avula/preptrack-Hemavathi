@@ -1,36 +1,35 @@
-
 # PrepTrack — Placement Preparation Performance Analyzer
 
-# 1. Project Overview
+## 1. Project Overview
 
-PrepTrack is a Python-based application that analyzes a student's placement preparation performance. 
-It collects student profile details such as registration number, graduation year, attendance, project completion, and profile verification. The application also processes seven days of coding practice scores, classifies performance, calculates overall performance, and checks placement eligibility. 
-Finally, it displays a detailed report containing the student's performance, blockers, and recommended next action.
+PrepTrack is a Python console-based application designed to evaluate a student's placement preparation performance. It collects student profile details, attendance, graduation year, project completion status, profile verification status, and seven days of coding practice scores. The application validates the entered information, analyzes practice performance, calculates scores and averages, and determines the student's placement readiness. It also identifies the primary blocker and recommends the next action when the student is not ready.
 
+---
 
 ## 2. Features Implemented
 
 The application includes the following features:
 
-* Student-profile input
+* Student profile input
 * Student name validation
 * Registration number input
-* Graduation-year validation
+* Graduation year validation
 * Attendance validation between 0 and 100
-* Yes-or-no input validation
-* Project completion verification
-* Profile verification
-* Seven-day practice score processing
-* Absent-day tracking
+* Project completion Yes/No validation
+* Profile verification Yes/No validation
+* Seven-day coding practice processing
+* Practice score validation
+* Absent-day handling
 * Passed and failed practice counting
 * Score classification
-* Strong-score detection
-* Satisfactory-score detection
-* Needs-improvement detection
-* Critical-score detection
+* Strong score detection
+* Satisfactory score detection
+* Needs Improvement detection
+* Critical score detection
 * Highest score detection
 * Lowest score detection
 * First critical score detection
+* Total score calculation
 * Average score calculation
 * Practice eligibility evaluation
 * Attendance eligibility evaluation
@@ -40,14 +39,14 @@ The application includes the following features:
 * Placement-readiness evaluation
 * Final status generation
 * Primary blocker identification
-* Next-action recommendation
-* Detailed final performance report
+* Next action recommendation
+* Final performance report generation
 
 ---
 
 ## 3. Score Classification
 
-The application classifies daily practice scores using the following criteria:
+The application classifies each attempted practice score as follows:
 
 | Score Range | Classification    |
 | ----------- | ----------------- |
@@ -55,249 +54,244 @@ The application classifies daily practice scores using the following criteria:
 | 60–74       | Satisfactory      |
 | 40–59       | Needs Improvement |
 | 0–39        | Critical          |
+| -1          | Absent            |
 
-A score of `-1` represents an absent practice day.
+A score of `-1` represents an absent practice day and is not included when calculating the average score.
 
 ---
 
 ## 4. Placement Readiness Criteria
 
-The application checks multiple conditions before considering a student ready for placement preparation.
+The application evaluates placement readiness using multiple conditions.
 
-The main eligibility conditions are:
+A student must satisfy the following requirements:
 
 * Graduation year must be between 2025 and 2027.
 * Attendance must be at least 75%.
 * At least 6 practice days must be attempted.
 * Average practice score must be at least 70.
-* At least 4 practices must be passed.
+* At least 4 practice days must be passed.
 * No critical score should be present.
 * Required project must be completed.
 * Student profile must be verified.
 
-If the conditions are not satisfied, the application identifies the primary blocker and provides a recommended next action.
+If a requirement is not satisfied, PrepTrack identifies the primary blocker and provides a recommended next action.
 
 ---
 
 ## 5. Python Concepts Used
 
-The following Python concepts were used in the project:
+The project uses the following Python concepts:
 
 * Variables
-* Data types
-* `input()` function
-* `print()` function
+* Strings
+* Integers
+* Floating-point numbers
+* Boolean values
+* `input()`
+* `print()`
 * Type conversion using `int()` and `float()`
 * Arithmetic operators
-* Comparison operators
+* Relational operators
 * Logical operators
+* Assignment operators
+* Boolean expressions
 * `if`, `elif`, and `else`
+* Nested conditions
 * `while` loops
 * `for` loops
+* `range()`
 * `break`
 * `continue`
-* Boolean values
-* String methods such as `.lower()`
-* Formatted strings using f-strings
-* Conditional expressions
 * Counters
-* Basic input validation
+* Accumulator variables
+* Conditional expressions
+* f-Strings
+* Input validation
 
 ---
 
 ## 6. How to Run
 
-### Step 1: Clone the repository
+### Step 1: Open the project folder
 
-Clone the project repository to your computer.
+Open the PrepTrack project folder in a terminal or command prompt.
 
-### Step 2: Open the project folder
-
-Open the project folder in a terminal or command prompt.
-
-### Step 3: Run the program
+### Step 2: Run the program
 
 ```bash
 python main.py
 ```
 
-Depending on the system configuration:
+If your system uses Python 3:
 
 ```bash
 python3 main.py
 ```
 
-### Step 4: Enter the requested information
+### Step 3: Enter the required information
 
-The application will ask for student details, attendance, project status, profile verification, and seven daily practice scores.
+The application will ask for:
 
-### Step 5: View the final report
+* Student name
+* Registration number
+* Graduation year
+* Attendance percentage
+* Project completion status
+* Profile verification status
+* Seven daily practice scores
 
-After entering all required information, PrepTrack displays the student's performance summary and placement-readiness decision.
+Use `-1` when the student is absent on a practice day.
+
+### Step 4: View the final report
+
+After all inputs are entered, the application displays the student's profile, practice summary, performance analysis, critical-score information, final status, primary blocker, and next recommended action.
 
 ---
 
-## 7. Test-Result Summary
+## 7. Test Result Summary
 
-The application was tested with different types of input to verify the validation and decision-making logic.
+The application was tested using valid and invalid inputs to verify the validation, calculation, and decision-making logic.
 
-### Test Case 1 — Valid Student Profile
-
-**Input:**
-
-* Valid student name
-* Valid graduation year
-* Valid attendance
-* Project completed
-* Profile verified
-
-**Result:**
-The application accepts the student details successfully.
-
-### Test Case 2 — Invalid Attendance
-
-**Input:**
-
-```text
-Attendance = 105
-```
-
-**Result:**
-The application rejects the value and asks the user to enter attendance between 0 and 100.
-
-### Test Case 3 — Invalid Practice Score
-
-**Input:**
-
-```text
-Score = 120
-```
-
-**Result:**
-The application rejects the score and asks for a value between 0 and 100 or `-1` for absence.
-
-### Test Case 4 — Absent Practice Day
-
-**Input:**
-
-```text
-Score = -1
-```
-
-**Result:**
-The day is recorded as absent and is not included in the average score calculation.
-
-### Test Case 5 — Critical Score
-
-**Input:**
-
-```text
-Score = 30
-```
-
-**Result:**
-The score is classified as Critical, and the application records the first critical score.
-
-### Test Case 6 — Placement Readiness
-
-When the student satisfies all required eligibility conditions, the application displays:
-
-```text
-Final Status    : Ready for Mock Interview
-Primary Blocker : None
-```
+| Test Scenario                   | Status |
+| ------------------------------- | ------ |
+| Student Name Validation         | Passed |
+| Registration Number Input       | Passed |
+| Graduation Year Validation      | Passed |
+| Attendance Validation           | Passed |
+| Project Status Validation       | Passed |
+| Profile Verification Validation | Passed |
+| Practice Score Validation       | Passed |
+| Absent Day Handling             | Passed |
+| Score Classification            | Passed |
+| Passed and Failed Count         | Passed |
+| Highest Score Detection         | Passed |
+| Lowest Score Detection          | Passed |
+| Critical Score Detection        | Passed |
+| Average Calculation             | Passed |
+| Placement Readiness Evaluation  | Passed |
+| Final Report Generation         | Passed |
 
 ---
 
 ## 8. Individual Contribution
 
-# Name: Avula Hemavathi
+**Name:** Avula Hemavathi
 
 **Repository URL:**
+https://github.com/Hemavathi-avula/preptrack-Hemavathi.git
 
+### My Main Contribution
 
-**My main contribution:**
-I worked on the student input, validation, seven-day practice processing, score analysis, and placement-readiness logic of the PrepTrack application.
+I worked on the development of the PrepTrack Python console application, including student-profile input, input validation, seven-day practice score processing, performance analysis, placement-readiness evaluation, and final report generation.
 
-**Features I implemented:**
+### Features I Implemented
 
 * Student name validation
 * Registration number input
-* Graduation-year validation
+* Graduation year validation
 * Attendance validation
 * Project completion validation
-* Profile verification
+* Profile verification validation
 * Seven-day practice score processing
-* Absent-day tracking
+* Absent-day handling
 * Passed and failed practice counting
 * Score classification
 * Highest and lowest score detection
 * Critical-score detection
 * Average score calculation
 * Placement-readiness evaluation
-* Final status and next-action generation
+* Primary blocker identification
+* Next action recommendation
+* Final report generation
 
-**Python concepts I used:**
+### Python Concepts I Used
 
-I used variables, input/output, type conversion, conditional statements, `for` and `while` loops, Boolean values, comparison operators, logical operators, `break`, `continue`, f-strings, and input validation.
+* Variables and data types
+* User input
+* Type conversion
+* Conditional statements
+* `for` loops
+* `while` loops
+* `break`
+* `continue`
+* Boolean expressions
+* Relational operators
+* Logical operators
+* Counters
+* Accumulator variables
+* f-Strings
+* Input validation
 
-**Most difficult logic:**
+### Most Difficult Logic
 
-The most difficult part was implementing the seven-day practice score analysis and placement-readiness decision. The application needs to track several values at the same time, such as attempted days, absent days, passed days, failed days, average score, highest score, lowest score, and critical scores.
+The most difficult part was processing the seven daily practice scores while tracking multiple values such as attempted days, absent days, passed days, failed days, highest score, lowest score, and critical scores.
 
-**Problem I faced:**
+The placement-readiness decision was also challenging because several conditions had to be checked together and the application needed to identify the correct primary blocker.
 
-I initially had problems with indentation, variable names, and handling the project-status value consistently. I also needed to understand how multiple eligibility conditions should be combined to make the final placement decision.
+### Problem I Faced
 
-**How I solved it:**
+I initially faced problems with Python indentation, variable-name inconsistencies, Boolean values, and combining multiple eligibility conditions.
 
-I divided the application into smaller sections and tested each section separately. I used counters and Boolean variables to track the student's performance and used logical operators to combine the eligibility conditions. I also corrected variable-name inconsistencies and improved input validation.
+I also needed to make sure absent days were not included in the average calculation and that highest and lowest scores were calculated only from attempted days.
+
+### How I Solved It
+
+I divided the program into smaller sections and tested each part separately. I used counters and Boolean variables to track different conditions and used `break` and `continue` to control the loops. I also used logical operators to combine the placement-readiness requirements.
 
 ---
 
 ## 9. Code Review Completed
 
-The project code was reviewed to identify logical errors, validation issues, variable inconsistencies, and opportunities for improvement.
+A peer code review was completed to identify logical errors, input-validation issues, variable inconsistencies, and opportunities to improve the readability and reliability of the application.
 
-The review focused on:
+### Review Areas
 
 * Input validation
 * Variable naming
-* Conditional logic
-* Score calculation
+* Score processing
+* Score classification
+* Average calculation
+* Highest and lowest score calculation
 * Placement-readiness conditions
+* Final status logic
 * Code readability
-* Handling invalid input
 
 ---
 
 ## 10. Feedback Received
 
-The following improvements were identified during the code review:
+The following feedback was received during the code review:
 
-* Maintain consistent variable names throughout the program.
-* Use proper indentation for Python blocks.
-* Validate user input before processing it.
-* Keep Boolean values consistent instead of comparing them with strings.
-* Improve handling of invalid numeric input.
-* Make the final decision logic easier to understand.
+1. Improve input validation so invalid values are handled properly.
+2. Maintain consistent variable names throughout the program.
+3. Ensure Boolean values are used consistently.
+4. Display the daily practice result after processing each score.
+5. Make final status messages clearly represent the student's actual placement-preparation condition.
+6. Improve the readability of the final decision logic.
+
+### Was the Feedback Valid?
+
+Yes. The feedback helped identify areas where the program could be made more consistent, readable, and user-friendly.
 
 ---
 
 ## 11. Improvement Made After Review
 
-After the review, the input-validation and decision logic were improved.
+Based on the peer-review feedback, improvements were made to the validation and decision-making logic.
 
-For example, the project-status value is stored consistently as a Boolean:
+### Improvements
 
-```python
-if project_status == "yes":
-    project_status = True
-elif project_status == "no":
-    project_status = False
-```
+* Corrected variable-name inconsistencies.
+* Improved indentation and code structure.
+* Used Boolean values consistently for project and profile status.
+* Added daily practice result messages.
+* Improved handling of absent practice days.
+* Improved highest and lowest score tracking.
+* Updated final status and next-action messages.
+* Improved the placement-readiness decision logic.
 
-The placement-readiness condition then uses the Boolean value directly:
+### Example of Improved Placement Decision
 
 ```python
 placement_ready = (
@@ -312,7 +306,11 @@ placement_ready = (
 )
 ```
 
-This makes the code more consistent, readable, and easier to maintain.
+### Commit Message Used
+
+```bash
+git commit -m "Apply peer review improvements"
+```
 
 ---
 
@@ -322,13 +320,11 @@ This makes the code more consistent, readable, and easier to maintain.
 PrepTrack/
 │
 ├── main.py
-├── README.md
-└── requirements.txt
+└── README.md
 ```
 
 ---
 
 ## 13. Conclusion
 
-PrepTrack provides a simple way to evaluate a student's placement preparation progress. It combines profile validation, attendance, coding-practice performance, project completion, and profile verification to produce a final readiness decision. The project demonstrates the practical use of fundamental Python programming concepts in a real-world application.
-
+PrepTrack demonstrates how fundamental Python concepts can be used to build a practical placement-preparation analysis application. The project validates student information, analyzes seven days of coding practice, evaluates multiple eligibility conditions, and provides a clear placement-readiness result with a recommended next action.
